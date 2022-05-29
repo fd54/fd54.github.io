@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="单调栈,Dijkstra算法,BFS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="重排字符形成目标字符串题目描述给你两个下标从 0 开始的字符串 s 和 target 。你可以从 s 取出一些字符并将其重排，得到若干新的字符串。 从 s 中取出字符并重新排列，返回可以形成 target 的 最大 副本数。 示例 1： 1234567输入：s &#x3D; &quot;ilovecodingonleetcode&quot;, target &#x3D; &quot;code&quot;输出：2解释：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第295场周赛">
+<meta property="og:url" content="http://example.com/2022/05/29/leetcode%20%E5%91%A8%E8%B5%9B/%E7%AC%AC295%E5%9C%BA%E5%91%A8%E8%B5%9B/index.html">
+<meta property="og:site_name" content="Charles的博客">
+<meta property="og:description" content="重排字符形成目标字符串题目描述给你两个下标从 0 开始的字符串 s 和 target 。你可以从 s 取出一些字符并将其重排，得到若干新的字符串。 从 s 中取出字符并重新排列，返回可以形成 target 的 最大 副本数。 示例 1： 1234567输入：s &#x3D; &quot;ilovecodingonleetcode&quot;, target &#x3D; &quot;code&quot;输出：2解释：">
+<meta property="og:locale">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2022/04/06/example1drawio-1.png">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2022/04/06/example1drawio.png">
+<meta property="article:published_time" content="2022-05-29T09:53:20.000Z">
+<meta property="article:modified_time" content="2022-05-29T11:03:19.029Z">
+<meta property="article:author" content="火锅Heat">
+<meta property="article:tag" content="单调栈">
+<meta property="article:tag" content="Dijkstra算法">
+<meta property="article:tag" content="BFS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://assets.leetcode.com/uploads/2022/04/06/example1drawio-1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://example.com/2022/05/29/leetcode 周赛/第295场周赛/"/>
+
+
+
+
+
+  <title>第295场周赛 | Charles的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Charles的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">今天写bug了吗</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/29/leetcode%20%E5%91%A8%E8%B5%9B/%E7%AC%AC295%E5%9C%BA%E5%91%A8%E8%B5%9B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="火锅Heat">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ava.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Charles的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">第295场周赛</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-05-29T17:53:20+08:00">
+                2022-05-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode%E5%91%A8%E8%B5%9B/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode周赛</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="重排字符形成目标字符串"><a href="#重排字符形成目标字符串" class="headerlink" title="重排字符形成目标字符串"></a>重排字符形成目标字符串</h4><h5 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h5><p>给你两个下标从 <strong>0</strong> 开始的字符串 <code>s</code> 和 <code>target</code> 。你可以从 <code>s</code> 取出一些字符并将其重排，得到若干新的字符串。</p>
+<p>从 <code>s</code> 中取出字符并重新排列，返回可以形成 <code>target</code> 的 <strong>最大</strong> 副本数。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;ilovecodingonleetcode&quot;, target = &quot;code&quot;</span><br><span class="line">输出：2</span><br><span class="line">解释：</span><br><span class="line">对于 &quot;code&quot; 的第 1 个副本，选取下标为 4 、5 、6 和 7 的字符。</span><br><span class="line">对于 &quot;code&quot; 的第 2 个副本，选取下标为 17 、18 、19 和 20 的字符。</span><br><span class="line">形成的字符串分别是 &quot;ecod&quot; 和 &quot;code&quot; ，都可以重排为 &quot;code&quot; 。</span><br><span class="line">可以形成最多 2 个 &quot;code&quot; 的副本，所以返回 2 。</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;abcba&quot;, target = &quot;abc&quot;</span><br><span class="line">输出：1</span><br><span class="line">解释：</span><br><span class="line">选取下标为 0 、1 和 2 的字符，可以形成 &quot;abc&quot; 的 1 个副本。 </span><br><span class="line">可以形成最多 1 个 &quot;abc&quot; 的副本，所以返回 1 。</span><br><span class="line">注意，尽管下标 3 和 4 分别有额外的 &#x27;a&#x27; 和 &#x27;b&#x27; ，但不能重用下标 2 处的 &#x27;c&#x27; ，所以无法形成 &quot;abc&quot; 的第 2 个副本。</span><br></pre></td></tr></table></figure>
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;abbaccaddaeea&quot;, target = &quot;aaaaa&quot;</span><br><span class="line">输出：1</span><br><span class="line">解释：</span><br><span class="line">选取下标为 0 、3 、6 、9 和 12 的字符，可以形成 &quot;aaaaa&quot; 的 1 个副本。</span><br><span class="line">可以形成最多 1 个 &quot;aaaaa&quot; 的副本，所以返回 1 。</span><br></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= s.length &lt;= 100</code></li>
+<li><code>1 &lt;= target.length &lt;= 10</code></li>
+<li><code>s</code> 和 <code>target</code> 由小写英文字母组成</li>
+</ul>
+<h4 id="价格减免"><a href="#价格减免" class="headerlink" title="价格减免"></a>价格减免</h4><h5 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h5><p><strong>句子</strong> 是由若干个单词组成的字符串，单词之间用单个空格分隔，其中每个单词可以包含数字、小写字母、和美元符号 <code>&#39;$&#39;</code> 。如果单词的形式为美元符号后跟着一个非负实数，那么这个单词就表示一个价格。</p>
+<ul>
+<li>例如 <code>&quot;$100&quot;</code>、<code>&quot;$23&quot;</code> 和 <code>&quot;$6.75&quot;</code> 表示价格，而 <code>&quot;100&quot;</code>、<code>&quot;$&quot;</code> 和 <code>&quot;2$3&quot;</code> 不是。</li>
+</ul>
+<p><strong>注意：</strong>本题输入中的价格均为整数。</p>
+<p>给你一个字符串 <code>sentence</code> 和一个整数 <code>discount</code> 。对于每个表示价格的单词，都在价格的基础上减免 <code>discount%</code> ，并 <strong>更新</strong> 该单词到句子中。所有更新后的价格应该表示为一个 <strong>恰好保留小数点后两位</strong> 的数字。</p>
+<p>返回表示修改后句子的字符串。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：sentence = &quot;there are $1 $2 and 5$ candies in the shop&quot;, discount = 50</span><br><span class="line">输出：&quot;there are $0.50 $1.00 and 5$ candies in the shop&quot;</span><br><span class="line">解释：</span><br><span class="line">表示价格的单词是 &quot;$1&quot; 和 &quot;$2&quot; 。 </span><br><span class="line">- &quot;$1&quot; 减免 50% 为 &quot;$0.50&quot; ，所以 &quot;$1&quot; 替换为 &quot;$0.50&quot; 。</span><br><span class="line">- &quot;$2&quot; 减免 50% 为 &quot;$1&quot; ，所以 &quot;$1&quot; 替换为 &quot;$1.00&quot; 。</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：sentence = &quot;1 2 $3 4 $5 $6 7 8$ $9 $10$&quot;, discount = 100</span><br><span class="line">输出：&quot;1 2 $0.00 4 $0.00 $0.00 7 8$ $0.00 $10$&quot;</span><br><span class="line">解释：</span><br><span class="line">任何价格减免 100% 都会得到 0 。</span><br><span class="line">表示价格的单词分别是 &quot;$3&quot;、&quot;$5&quot;、&quot;$6&quot; 和 &quot;$9&quot;。</span><br><span class="line">每个单词都替换为 &quot;$0.00&quot;。</span><br></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= sentence.length &lt;= 105</code></li>
+<li><code>sentence</code> 由小写英文字母、数字、<code>&#39; &#39;</code> 和 <code>&#39;$&#39;</code> 组成</li>
+<li><code>sentence</code> 不含前导和尾随空格</li>
+<li><code>sentence</code> 的所有单词都用单个空格分隔</li>
+<li>所有价格都是 <strong>正</strong> 整数且不含前导零</li>
+<li>所有价格 <strong>最多</strong> 为 <code>10</code> 位数字</li>
+<li><code>0 &lt;= discount &lt;= 100</code></li>
+</ul>
+<h4 id="使数组按非递减顺序排列"><a href="#使数组按非递减顺序排列" class="headerlink" title="使数组按非递减顺序排列"></a>使数组按非递减顺序排列</h4><h5 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h5><p>给你一个下标从 <strong>0</strong> 开始的整数数组 <code>nums</code> 。在一步操作中，移除所有满足 <code>nums[i - 1] &gt; nums[i]</code> 的 <code>nums[i]</code> ，其中 <code>0 &lt; i &lt; nums.length</code> 。</p>
+<p>重复执行步骤，直到 <code>nums</code> 变为 <strong>非递减</strong> 数组，返回所需执行的操作数。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [5,3,4,4,7,3,6,11,8,5,11]</span><br><span class="line">输出：3</span><br><span class="line">解释：执行下述几个步骤：</span><br><span class="line">- 步骤 1 ：[5,3,4,4,7,3,6,11,8,5,11] 变为 [5,4,4,7,6,11,11]</span><br><span class="line">- 步骤 2 ：[5,4,4,7,6,11,11] 变为 [5,4,7,11,11]</span><br><span class="line">- 步骤 3 ：[5,4,7,11,11] 变为 [5,7,11,11]</span><br><span class="line">[5,7,11,11] 是一个非递减数组，因此，返回 3 。</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [4,5,7,7,13]</span><br><span class="line">输出：0</span><br><span class="line">解释：nums 已经是一个非递减数组，因此，返回 0 。</span><br></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 105</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 109</code></li>
+</ul>
+<h5 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h5><p>每个元素最终会被其左侧第一个比自己大的元素消除，否则该元素保留。故只需使用单调栈记录每个元素左侧更大元素的下标，然后去最大值即可。</p>
+<h4 id="到达角落需要移除障碍物的最小数目"><a href="#到达角落需要移除障碍物的最小数目" class="headerlink" title="到达角落需要移除障碍物的最小数目"></a>到达角落需要移除障碍物的最小数目</h4><h5 id="题目描述-3"><a href="#题目描述-3" class="headerlink" title="题目描述"></a>题目描述</h5><p>给你一个下标从 <strong>0</strong> 开始的二维整数数组 <code>grid</code> ，数组大小为 <code>m x n</code> 。每个单元格都是两个值之一：</p>
+<ul>
+<li><code>0</code> 表示一个 <strong>空</strong> 单元格，</li>
+<li><code>1</code> 表示一个可以移除的 <strong>障碍物</strong> 。</li>
+</ul>
+<p>你可以向上、下、左、右移动，从一个空单元格移动到另一个空单元格。</p>
+<p>现在你需要从左上角 <code>(0, 0)</code> 移动到右下角 <code>(m - 1, n - 1)</code> ，返回需要移除的障碍物的 <strong>最小</strong> 数目。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2022/04/06/example1drawio-1.png" alt="img" style="zoom:50%;" /></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：grid = [[0,1,1],[1,1,0],[1,1,0]]</span><br><span class="line">输出：2</span><br><span class="line">解释：可以移除位于 (0, 1) 和 (0, 2) 的障碍物来创建从 (0, 0) 到 (2, 2) 的路径。</span><br><span class="line">可以证明我们至少需要移除两个障碍物，所以返回 2 。</span><br><span class="line">注意，可能存在其他方式来移除 2 个障碍物，创建出可行的路径。</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2022/04/06/example1drawio.png" alt="img" style="zoom: 50%;" /></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：grid = [[0,1,0,0,0],[0,1,0,1,0],[0,0,0,1,0]]</span><br><span class="line">输出：0</span><br><span class="line">解释：不移除任何障碍物就能从 (0, 0) 到 (2, 4) ，所以返回 0 。</span><br></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>m == grid.length</code></li>
+<li><code>n == grid[i].length</code></li>
+<li><code>1 &lt;= m, n &lt;= 105</code></li>
+<li><code>2 &lt;= m * n &lt;= 105</code></li>
+<li><code>grid[i][j]</code> 为 <code>0</code> <strong>或</strong> <code>1</code></li>
+<li><code>grid[0][0] == grid[m - 1][n - 1] == 0</code></li>
+</ul>
+<h5 id="解法-1"><a href="#解法-1" class="headerlink" title="解法"></a>解法</h5><p>把障碍物视作可以经过的单元格，代价为1，空格经过代价为0，问题转化成起点至终点的最短路径问题，可以使用BFS的Dijkstra算法解决。</p>
+<p> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/">1368. 使网格图至少有一条有效路径的最小代价</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%8D%95%E8%B0%83%E6%A0%88/" rel="tag"># 单调栈</a>
+          
+            <a href="/tags/Dijkstra%E7%AE%97%E6%B3%95/" rel="tag"># Dijkstra算法</a>
+          
+            <a href="/tags/BFS/" rel="tag"># BFS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/05/24/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%8F%90%E5%8D%87%E6%96%B9%E6%B3%95/" rel="next" title="提升方法">
+                <i class="fa fa-chevron-left"></i> 提升方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/ava.jpg"
+               alt="火锅Heat" />
+          <p class="site-author-name" itemprop="name">火锅Heat</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/fd54" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://space.bilibili.com/419697122" target="_blank" title="bilibili">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      bilibili
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E6%8E%92%E5%AD%97%E7%AC%A6%E5%BD%A2%E6%88%90%E7%9B%AE%E6%A0%87%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.</span> <span class="nav-text">重排字符形成目标字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">题目描述</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%B7%E6%A0%BC%E5%87%8F%E5%85%8D"><span class="nav-number">2.</span> <span class="nav-text">价格减免</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0-1"><span class="nav-number">2.1.</span> <span class="nav-text">题目描述</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E6%95%B0%E7%BB%84%E6%8C%89%E9%9D%9E%E9%80%92%E5%87%8F%E9%A1%BA%E5%BA%8F%E6%8E%92%E5%88%97"><span class="nav-number">3.</span> <span class="nav-text">使数组按非递减顺序排列</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0-2"><span class="nav-number">3.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A7%A3%E6%B3%95"><span class="nav-number">3.2.</span> <span class="nav-text">解法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%B0%E8%BE%BE%E8%A7%92%E8%90%BD%E9%9C%80%E8%A6%81%E7%A7%BB%E9%99%A4%E9%9A%9C%E7%A2%8D%E7%89%A9%E7%9A%84%E6%9C%80%E5%B0%8F%E6%95%B0%E7%9B%AE"><span class="nav-number">4.</span> <span class="nav-text">到达角落需要移除障碍物的最小数目</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0-3"><span class="nav-number">4.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A7%A3%E6%B3%95-1"><span class="nav-number">4.2.</span> <span class="nav-text">解法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">火锅Heat</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
