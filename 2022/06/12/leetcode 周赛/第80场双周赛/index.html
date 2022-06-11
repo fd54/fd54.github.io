@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="强密码检验器 II题目描述如果一个密码满足以下所有条件，我们称它是一个 强 密码：  它有至少 8 个字符。 至少包含 一个小写英文 字母。 至少包含 一个大写英文 字母。 至少包含 一个数字 。 至少包含 一个特殊字符 。特殊字符为：&quot;!@#$%^&amp;*()-+&quot; 中的一个。 它 不 包含 2 个连续相同的字符（比方说 &quot;aab&quot; 不符合该条件，但是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第80场双周赛">
+<meta property="og:url" content="http://example.com/2022/06/12/leetcode%20%E5%91%A8%E8%B5%9B/%E7%AC%AC80%E5%9C%BA%E5%8F%8C%E5%91%A8%E8%B5%9B/index.html">
+<meta property="og:site_name" content="Charles的博客">
+<meta property="og:description" content="强密码检验器 II题目描述如果一个密码满足以下所有条件，我们称它是一个 强 密码：  它有至少 8 个字符。 至少包含 一个小写英文 字母。 至少包含 一个大写英文 字母。 至少包含 一个数字 。 至少包含 一个特殊字符 。特殊字符为：&quot;!@#$%^&amp;*()-+&quot; 中的一个。 它 不 包含 2 个连续相同的字符（比方说 &quot;aab&quot; 不符合该条件，但是">
+<meta property="og:locale">
+<meta property="article:published_time" content="2022-06-11T16:50:49.000Z">
+<meta property="article:modified_time" content="2022-06-11T17:13:39.681Z">
+<meta property="article:author" content="火锅Heat">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://example.com/2022/06/12/leetcode 周赛/第80场双周赛/"/>
+
+
+
+
+
+  <title>第80场双周赛 | Charles的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Charles的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">今天写bug了吗</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/12/leetcode%20%E5%91%A8%E8%B5%9B/%E7%AC%AC80%E5%9C%BA%E5%8F%8C%E5%91%A8%E8%B5%9B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="火锅Heat">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ava.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Charles的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">第80场双周赛</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-06-12T00:50:49+08:00">
+                2022-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode%E5%91%A8%E8%B5%9B/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode周赛</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="强密码检验器-II"><a href="#强密码检验器-II" class="headerlink" title="强密码检验器 II"></a>强密码检验器 II</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>如果一个密码满足以下所有条件，我们称它是一个 <strong>强</strong> 密码：</p>
+<ul>
+<li>它有至少 <code>8</code> 个字符。</li>
+<li>至少包含 <strong>一个小写英文</strong> 字母。</li>
+<li>至少包含 <strong>一个大写英文</strong> 字母。</li>
+<li>至少包含 <strong>一个数字</strong> 。</li>
+<li>至少包含 <strong>一个特殊字符</strong> 。特殊字符为：<code>&quot;!@#$%^&amp;*()-+&quot;</code> 中的一个。</li>
+<li>它 <strong>不</strong> 包含 <code>2</code> 个连续相同的字符（比方说 <code>&quot;aab&quot;</code> 不符合该条件，但是 <code>&quot;aba&quot;</code> 符合该条件）。</li>
+</ul>
+<p>给你一个字符串 <code>password</code> ，如果它是一个 <strong>强</strong> 密码，返回 <code>true</code>，否则返回 <code>false</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：password = &quot;IloveLe3tcode!&quot;</span><br><span class="line">输出：true</span><br><span class="line">解释：密码满足所有的要求，所以我们返回 true 。</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：password = &quot;Me+You--IsMyDream&quot;</span><br><span class="line">输出：false</span><br><span class="line">解释：密码不包含数字，且包含 2 个连续相同的字符。所以我们返回 false 。</span><br></pre></td></tr></table></figure>
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：password = &quot;1aB!&quot;</span><br><span class="line">输出：false</span><br><span class="line">解释：密码不符合长度要求。所以我们返回 false 。</span><br></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= password.length &lt;= 100</code></li>
+<li><code>password</code> 包含字母，数字和 <code>&quot;!@#$%^&amp;*()-+&quot;</code> 这些特殊字符。</li>
+</ul>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">strongPasswordCheckerII</span>(<span class="params">self, s: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">    n = <span class="built_in">len</span>(s)</span><br><span class="line">    <span class="keyword">if</span> n &lt; <span class="number">8</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">    f1 = f2 = f3 = f4 = <span class="literal">False</span></span><br><span class="line">    last = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">if</span> <span class="number">0</span>&lt;=<span class="built_in">ord</span>(s[i])-<span class="number">97</span>&lt;<span class="number">26</span>:</span><br><span class="line">            f1 = <span class="literal">True</span></span><br><span class="line">        <span class="keyword">if</span> <span class="number">0</span>&lt;=<span class="built_in">ord</span>(s[i])-<span class="number">65</span>&lt;<span class="number">26</span>:</span><br><span class="line">            f2 = <span class="literal">True</span></span><br><span class="line">        <span class="keyword">if</span> <span class="number">0</span>&lt;=<span class="built_in">ord</span>(s[i])-<span class="number">48</span>&lt;<span class="number">10</span>:</span><br><span class="line">            f3 = <span class="literal">True</span></span><br><span class="line">        <span class="keyword">if</span> s[i] <span class="keyword">in</span> <span class="string">&#x27;!@#$%^&amp;*()-+&#x27;</span>:</span><br><span class="line">            f4 = <span class="literal">True</span></span><br><span class="line">        <span class="keyword">if</span> s[i] == last:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        last = s[i]</span><br><span class="line">    <span class="keyword">return</span> f1 <span class="keyword">and</span> f2 <span class="keyword">and</span> f3 <span class="keyword">and</span> f4</span><br></pre></td></tr></table></figure>
+<h2 id="咒语和药水的成功对数"><a href="#咒语和药水的成功对数" class="headerlink" title="咒语和药水的成功对数"></a>咒语和药水的成功对数</h2><h3 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h3><p>给你两个正整数数组 <code>spells</code> 和 <code>potions</code> ，长度分别为 <code>n</code> 和 <code>m</code> ，其中 <code>spells[i]</code> 表示第 <code>i</code> 个咒语的能量强度，<code>potions[j]</code> 表示第 <code>j</code> 瓶药水的能量强度。</p>
+<p>同时给你一个整数 <code>success</code> 。一个咒语和药水的能量强度 <strong>相乘</strong> 如果 <strong>大于等于</strong> <code>success</code> ，那么它们视为一对 <strong>成功</strong> 的组合。</p>
+<p>请你返回一个长度为 <code>n</code> 的整数数组 <code>pairs</code>，其中 <code>pairs[i]</code> 是能跟第 <code>i</code> 个咒语成功组合的 <strong>药水</strong> 数目。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：spells = [5,1,3], potions = [1,2,3,4,5], success = 7</span><br><span class="line">输出：[4,0,3]</span><br><span class="line">解释：</span><br><span class="line">- 第 0 个咒语：5 * [1,2,3,4,5] = [5,10,15,20,25] 。总共 4 个成功组合。</span><br><span class="line">- 第 1 个咒语：1 * [1,2,3,4,5] = [1,2,3,4,5] 。总共 0 个成功组合。</span><br><span class="line">- 第 2 个咒语：3 * [1,2,3,4,5] = [3,6,9,12,15] 。总共 3 个成功组合。</span><br><span class="line">所以返回 [4,0,3] 。</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：spells = [3,1,2], potions = [8,5,8], success = 16</span><br><span class="line">输出：[2,0,2]</span><br><span class="line">解释：</span><br><span class="line">- 第 0 个咒语：3 * [8,5,8] = [24,15,24] 。总共 2 个成功组合。</span><br><span class="line">- 第 1 个咒语：1 * [8,5,8] = [8,5,8] 。总共 0 个成功组合。</span><br><span class="line">- 第 2 个咒语：2 * [8,5,8] = [16,10,16] 。总共 2 个成功组合。</span><br><span class="line">所以返回 [2,0,2] 。</span><br></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>n == spells.length</code></li>
+<li><code>m == potions.length</code></li>
+<li><code>1 &lt;= n, m &lt;= 1e5</code></li>
+<li><code>1 &lt;= spells[i], potions[i] &lt;= 1e5</code></li>
+<li><code>1 &lt;= success &lt;= 1e10</code></li>
+</ul>
+<h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>首先将potions排序，然后二分法选出小于 $success/spells[i]$ 的靠右侧的下标，其右边即为所有能和咒语 $i$ 成功组合的药水，计数即可</p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> bisect</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">successfulPairs</span>(<span class="params">self, ss: <span class="type">List</span>[<span class="built_in">int</span>], ps: <span class="type">List</span>[<span class="built_in">int</span>], success: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        ps.sort()</span><br><span class="line">        n = <span class="built_in">len</span>(ps)</span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(ss)):</span><br><span class="line">            ans.append(n-bisect.bisect_left(ps, success/ss[i]))</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+<h2 id="替换字符后匹配"><a href="#替换字符后匹配" class="headerlink" title="替换字符后匹配"></a>替换字符后匹配</h2><h3 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h3><p>给你两个字符串 <code>s</code> 和 <code>sub</code> 。同时给你一个二维字符数组 <code>mappings</code> ，其中 <code>mappings[i] = [oldi, newi]</code> 表示你可以替换 <code>sub</code> 中任意数目的 <code>oldi</code> 个字符，替换成 <code>newi</code> 。<code>sub</code> 中每个字符 <strong>不能</strong> 被替换超过一次。</p>
+<p>如果使用 <code>mappings</code> 替换 0 个或者若干个字符，可以将 <code>sub</code> 变成 <code>s</code> 的一个子字符串，请你返回 <code>true</code>，否则返回 <code>false</code> 。</p>
+<p>一个 <strong>子字符串</strong> 是字符串中连续非空的字符序列。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;fool3e7bar&quot;, sub = &quot;leet&quot;, mappings = [[&quot;e&quot;,&quot;3&quot;],[&quot;t&quot;,&quot;7&quot;],[&quot;t&quot;,&quot;8&quot;]]</span><br><span class="line">输出：true</span><br><span class="line">解释：将 sub 中第一个 &#x27;e&#x27; 用 &#x27;3&#x27; 替换，将 &#x27;t&#x27; 用 &#x27;7&#x27; 替换。</span><br><span class="line">现在 sub = &quot;l3e7&quot; ，它是 s 的子字符串，所以我们返回 true 。</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;fooleetbar&quot;, sub = &quot;f00l&quot;, mappings = [[&quot;o&quot;,&quot;0&quot;]]</span><br><span class="line">输出：false</span><br><span class="line">解释：字符串 &quot;f00l&quot; 不是 s 的子串且没有可以进行的修改。</span><br><span class="line">注意我们不能用 &#x27;o&#x27; 替换 &#x27;0&#x27; 。</span><br></pre></td></tr></table></figure>
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;Fool33tbaR&quot;, sub = &quot;leetd&quot;, mappings = [[&quot;e&quot;,&quot;3&quot;],[&quot;t&quot;,&quot;7&quot;],[&quot;t&quot;,&quot;8&quot;],[&quot;d&quot;,&quot;b&quot;],[&quot;p&quot;,&quot;b&quot;]]</span><br><span class="line">输出：true</span><br><span class="line">解释：将 sub 里第一个和第二个 &#x27;e&#x27; 用 &#x27;3&#x27; 替换，用 &#x27;b&#x27; 替换 sub 里的 &#x27;d&#x27; 。</span><br><span class="line">得到 sub = &quot;l33tb&quot; ，它是 s 的子字符串，所以我们返回 true 。</span><br></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= sub.length &lt;= s.length &lt;= 5000</code></li>
+<li><code>0 &lt;= mappings.length &lt;= 1000</code></li>
+<li><code>mappings[i].length == 2</code></li>
+<li><code>oldi != newi</code></li>
+<li><code>s</code> 和 <code>sub</code> 只包含大写和小写英文字母和数字。</li>
+<li><code>oldi</code> 和 <code>newi</code> 是大写、小写字母或者是个数字。</li>
+</ul>
+<h3 id="解法-1"><a href="#解法-1" class="headerlink" title="解法"></a>解法</h3><p>首先处理<code>mappings</code>数组，成为查询速度更快的hash表，然后两重循环，分别遍历<code>s</code>和<code>sub</code>字符串，在<code>mappings</code>中查询是否存在对应替换或者二者相同，若有则继续遍历<code>sub</code>，否则继续遍历<code>s</code>字符串。</p>
+<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">matchReplacement</span>(<span class="params">self, s: <span class="built_in">str</span>, sub: <span class="built_in">str</span>, mappings: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">str</span>]]</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        d = defaultdict(<span class="built_in">set</span>)</span><br><span class="line">        <span class="keyword">for</span> k,v <span class="keyword">in</span> mappings:</span><br><span class="line">            d[k].add(v)</span><br><span class="line">        l = []</span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> sub:</span><br><span class="line">            d[c].add(c)</span><br><span class="line">            l.append(d[c])</span><br><span class="line">        n = <span class="built_in">len</span>(s)</span><br><span class="line">        m = <span class="built_in">len</span>(sub)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n-m+<span class="number">1</span>):</span><br><span class="line">            flag = <span class="number">1</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">                <span class="keyword">if</span> s[i+j] <span class="keyword">not</span> <span class="keyword">in</span> l[j]:</span><br><span class="line">                    flag = <span class="number">0</span></span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">if</span> flag:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+<h2 id="统计得分小于-K-的子数组数目"><a href="#统计得分小于-K-的子数组数目" class="headerlink" title="统计得分小于 K 的子数组数目"></a>统计得分小于 K 的子数组数目</h2><h3 id="题目描述-3"><a href="#题目描述-3" class="headerlink" title="题目描述"></a>题目描述</h3><p>一个数字的 <strong>分数</strong> 定义为数组之和 <strong>乘以</strong> 数组的长度。</p>
+<ul>
+<li>比方说，<code>[1, 2, 3, 4, 5]</code> 的分数为 <code>(1 + 2 + 3 + 4 + 5) * 5 = 75</code> 。</li>
+</ul>
+<p>给你一个正整数数组 <code>nums</code> 和一个整数 <code>k</code> ，请你返回 <code>nums</code> 中分数 <strong>严格小于</strong> <code>k</code> 的 <strong>非空整数子数组数目</strong>。</p>
+<p><strong>子数组</strong> 是数组中的一个连续元素序列。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [2,1,4,3,5], k = 10</span><br><span class="line">输出：6</span><br><span class="line">解释：</span><br><span class="line">有 6 个子数组的分数小于 10 ：</span><br><span class="line">- [2] 分数为 2 * 1 = 2 。</span><br><span class="line">- [1] 分数为 1 * 1 = 1 。</span><br><span class="line">- [4] 分数为 4 * 1 = 4 。</span><br><span class="line">- [3] 分数为 3 * 1 = 3 。 </span><br><span class="line">- [5] 分数为 5 * 1 = 5 。</span><br><span class="line">- [2,1] 分数为 (2 + 1) * 2 = 6 。</span><br><span class="line">注意，子数组 [1,4] 和 [4,3,5] 不符合要求，因为它们的分数分别为 10 和 36，但我们要求子数组的分数严格小于 10 。</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [1,1,1], k = 5</span><br><span class="line">输出：5</span><br><span class="line">解释：</span><br><span class="line">除了 [1,1,1] 以外每个子数组分数都小于 5 。</span><br><span class="line">[1,1,1] 分数为 (1 + 1 + 1) * 3 = 9 ，大于 5 。</span><br><span class="line">所以总共有 5 个子数组得分小于 5 。</span><br></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 1e5</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 1e5</code></li>
+<li><code>1 &lt;= k &lt;= 1e15</code></li>
+</ul>
+<h3 id="解法-2"><a href="#解法-2" class="headerlink" title="解法"></a>解法</h3><p>双指针+前缀和。首先使用数组<code>presum</code>记录数组的前缀和，便于计算后续的区间和，然后使用左、右指针<code>(l, r]</code>分别表示区间的左端点和右端点，然后遍历，若当前<code>l, r</code>满足条件，右指针右移，计数器加上当前区间长度，否则左指针右移。</p>
+<h3 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">countSubarrays</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], k: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="comment"># 计算前缀和</span></span><br><span class="line">        presum = [<span class="number">0</span>] * (n+<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            presum[i+<span class="number">1</span>] = presum[i] + nums[i]</span><br><span class="line">        <span class="comment"># 计数器</span></span><br><span class="line">        ans = <span class="number">0</span></span><br><span class="line">        <span class="comment"># 区间左右端点初始化</span></span><br><span class="line">        l = <span class="number">0</span></span><br><span class="line">        r = <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> r &lt; n+<span class="number">1</span>:</span><br><span class="line">            s = presum[r] - presum[l]</span><br><span class="line">            <span class="keyword">if</span> s*(r-l) &lt; k:</span><br><span class="line">                ans += r - l</span><br><span class="line">                r += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                l += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/06/10/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" rel="next" title="每日一题">
+                <i class="fa fa-chevron-left"></i> 每日一题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/ava.jpg"
+               alt="火锅Heat" />
+          <p class="site-author-name" itemprop="name">火锅Heat</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/fd54" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://space.bilibili.com/419697122" target="_blank" title="bilibili">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      bilibili
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%BA%E5%AF%86%E7%A0%81%E6%A3%80%E9%AA%8C%E5%99%A8-II"><span class="nav-number">1.</span> <span class="nav-text">强密码检验器 II</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">1.2.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%92%92%E8%AF%AD%E5%92%8C%E8%8D%AF%E6%B0%B4%E7%9A%84%E6%88%90%E5%8A%9F%E5%AF%B9%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">咒语和药水的成功对数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0-1"><span class="nav-number">2.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">解法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-1"><span class="nav-number">2.3.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%BF%E6%8D%A2%E5%AD%97%E7%AC%A6%E5%90%8E%E5%8C%B9%E9%85%8D"><span class="nav-number">3.</span> <span class="nav-text">替换字符后匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0-2"><span class="nav-number">3.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E6%B3%95-1"><span class="nav-number">3.2.</span> <span class="nav-text">解法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-2"><span class="nav-number">3.3.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%9F%E8%AE%A1%E5%BE%97%E5%88%86%E5%B0%8F%E4%BA%8E-K-%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84%E6%95%B0%E7%9B%AE"><span class="nav-number">4.</span> <span class="nav-text">统计得分小于 K 的子数组数目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0-3"><span class="nav-number">4.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E6%B3%95-2"><span class="nav-number">4.2.</span> <span class="nav-text">解法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-3"><span class="nav-number">4.3.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">火锅Heat</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
